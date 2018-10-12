@@ -1,0 +1,34 @@
+<div class="container">
+
+  <div class="jumbotron">
+    <h1 class="display-6">Flights</h1>
+    <hr class="my-4">
+    <p>Search flights for your favourite destination</p>
+  </div>
+
+  <form [formGroup]="bookingForm" class="form-inline">
+    <div class="form-group">
+      <label for="departure">Departure</label>
+      <input id="departure" formControlName="departure" [typeahead]="airportNames" [typeaheadOptionsLimit]="7"
+        [typeaheadMinLength]="0" placeholder="departure airport" class="form-control ml-1">
+
+    </div>
+
+    <div class="form-group px-2">
+      <label for="arrival">Arrival</label>
+      <input id="arrival" formControlName="arrival" [typeahead]="airportNames" [typeaheadOptionsLimit]="7"
+        [typeaheadMinLength]="0" placeholder="arrival airport" class="form-control ml-1">
+
+    </div>
+
+    <div class="form-group px-2" >
+        <input type="text" class="form-control ml-1" style="width: 200px !important;" placeholder="Daterangepicker" bsDaterangepicker formControlName="range" />
+    </div>
+
+    <div class="form-group px-2">
+        <button class="btn btn-primary" type="button">Search</button>
+    </div>
+
+
+  </form>
+</div>
