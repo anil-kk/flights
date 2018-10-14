@@ -11,14 +11,14 @@ export class FlightsService {
 constructor(private http: HttpClient) { }
 
 getBookingInfo() {
-  if (isDevMode) {
+  if (environment.isDev) {
     return this.http.get('./../../assets/booking-info.json');
   }
   return this.http.get(environment.apiUrl + 'forms/flight-booking-selector/');
 }
 
 getFlights(departureAirportIataCode, arrivalAirportIataCode, startDate, endDate) {
-  if (isDevMode) {
+  if (environment.isDev) {
     return this.http.get('./../../assets/flights-info.json');
   }
   return this.http.get(environment.apiUrl + `flights/from/${departureAirportIataCode}/to/

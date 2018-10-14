@@ -47,6 +47,7 @@ export class FlightsComponent implements OnInit {
     });
 
     this.bookingForm.get('departureAirportName').valueChanges.subscribe((airportName) => {
+      this.flights = [];
       this.departureCityName = airportName;
 
       this.departureIataCode = this.airportNameToIataCodeLookup.get(airportName);
@@ -63,6 +64,7 @@ export class FlightsComponent implements OnInit {
     });
 
     this.bookingForm.get('arrivalAirportName').valueChanges.subscribe( (airportName) => {
+      this.flights = [];
       this.arrivalCityName = airportName;
       this.arrivalIataCode = this.airportNameToIataCodeLookup.get(airportName);
     });
@@ -70,6 +72,7 @@ export class FlightsComponent implements OnInit {
 //  https://app.kothapalli.info/#!/flights/AGA/CRL/2018-10-17/2018-10-17
 //  https://murmuring-ocean-10826.herokuapp.com/en/api/2/flights/from/AMS/to/DUB/2018-10-14/2018-10-31/250/unique/?limit=15&offset-0
     this.bookingForm.get('range').valueChanges.subscribe((dateRange) => {
+      this.flights = [];
       this.startDate = this.getDate(dateRange[0]);
       this.endDate = this.getDate(dateRange[1]);
     });
