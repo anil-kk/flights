@@ -9,26 +9,64 @@
   <form [formGroup]="bookingForm" class="form-inline">
     <div class="form-group">
       <label for="departure">Departure</label>
-      <input id="departure" formControlName="departure" [typeahead]="airportNames" [typeaheadOptionsLimit]="7"
-        [typeaheadMinLength]="0" placeholder="departure airport" class="form-control ml-1">
+      <input id="departure" formControlName="departureAirportName" [typeahead]="departureAirportNames"
+        [typeaheadOptionsLimit]="10" [typeaheadMinLength]="0" placeholder="departure airport" class="form-control ml-1">
 
     </div>
 
-    <div class="form-group px-2">
+    <div class="form-group p-2">
       <label for="arrival">Arrival</label>
-      <input id="arrival" formControlName="arrival" [typeahead]="airportNames" [typeaheadOptionsLimit]="7"
-        [typeaheadMinLength]="0" placeholder="arrival airport" class="form-control ml-1">
+      <input id="arrival" formControlName="arrivalAirportName" [typeahead]="arrivalAirportNames"
+        [typeaheadOptionsLimit]="7" [typeaheadMinLength]="0" placeholder="arrival airport" class="form-control ml-1">
 
     </div>
 
-    <div class="form-group px-2" >
-        <input type="text" class="form-control ml-1" style="width: 200px !important;" placeholder="Daterangepicker" bsDaterangepicker formControlName="range" />
+    <div class="form-group p-2">
+      <input type="text" class="form-control ml-1" style="width: 200px !important;" placeholder="Daterangepicker"
+        bsDaterangepicker formControlName="range" />
     </div>
 
-    <div class="form-group px-2">
-        <button class="btn btn-primary" type="button">Search</button>
+    <div class="form-group p-2">
+      <button class="btn btn-primary" type="button" (click)="search()">Search</button>
     </div>
-
-
   </form>
+
+  <hr class="my-4">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col col-md-5">Departure</div>
+        <div class="col col-md-5">Arrival</div>
+        <div class="col col-md-2">Price</div>
+      </div>
+    </div>
+    <div class="card-body" *ngFor="let flight of flights">
+      <div class="row">
+        <div class="col col-md-5">
+          <h5 class="card-title">{{departureCityName}}</h5>
+        </div>
+        <div class="col col-md-5">
+          <h5 class="card-title">{{arrivalCityName}}</h5>
+        </div>
+        <div class="col col-md-2">
+          <h5 class="card-title">{{flight.price | currency:'EUR'}}</h5>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-md-5">
+          <p class="card-text">{{flight.dateFrom | date:'medium'}}</p>
+        </div>
+        <div class="col col-md-5">
+          <p class="card-text">{{flight.dateTo | date:'medium'}}</p>
+        </div>
+        <div class="col col-md-2">
+          <h5 class="card-title">{{discountCode}}</h5>
+        </div>
+      </div>
+      <hr class="my-2">
+    </div>
+  </div>
+
 </div>

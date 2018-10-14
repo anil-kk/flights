@@ -17,9 +17,12 @@ getBookingInfo() {
   return this.http.get(environment.apiUrl + 'forms/flight-booking-selector/');
 }
 
-getFlights(originCode, destinationCode, startDate, endDate) {
-  return this.http.get(environment.apiUrl + `flights/from/${originCode}/to/
-  ${destinationCode}/${startDate}/${endDate}/250/unique/?limit=15&offset-0`);
+getFlights(departureAirportIataCode, arrivalAirportIataCode, startDate, endDate) {
+  if (isDevMode) {
+    return this.http.get('./../../assets/flights-info.json');
+  }
+  return this.http.get(environment.apiUrl + `flights/from/${departureAirportIataCode}/to/
+  ${arrivalAirportIataCode}/${startDate}/${endDate}/250/unique/?limit=15&offset-0`);
 }
 
 }
